@@ -43,6 +43,7 @@ async function start() {
             dataPath: `./${config.session.Path}`,
             clientId: `${config.session.Name}`
         }),
+        authTimeoutMs: 600000,
         playwright: {
             headless: true,
             devtools: false,
