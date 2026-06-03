@@ -63,8 +63,7 @@ async function start() {
                 '--no-zygote',
                 //'--enable-features=WebContentsForceDark:inversion_method/cielab_based/image_behavior/selective/text_lightness_threshold/150/background_lightness_threshold/205'
             ],
-            executablePath: '/usr/bin/chromium',
-            bypassCSP: true
+            bypassCSP: true,
         },
         markOnlineAvailable: true,
         qrMaxRetries: 2,
