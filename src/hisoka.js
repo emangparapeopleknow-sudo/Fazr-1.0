@@ -44,11 +44,9 @@ async function start() {
             clientId: `${config.session.Name}`
         }),
         authTimeoutMs: 600000,
-        qrMaxRetries: 10,
         playwright: {
             headless: true,
             devtools: false,
-            timeout: 0,
             args: [
                 '--aggressive-tab-discard',
                 '--disable-accelerated-2d-canvas',
@@ -75,6 +73,7 @@ async function start() {
         autoClearSession: true
     })
 
+    hisoka.options.puppeteer.timeout = 0;
     hisoka.initialize()
 
     hisoka.on("qr", qr => {
