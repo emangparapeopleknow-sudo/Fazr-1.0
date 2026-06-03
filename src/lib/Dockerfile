@@ -1,6 +1,5 @@
-FROM ghcr.io/puppeteer/puppeteer:latest
+FROM mcr.microsoft.com/playwright:v1.44.0-jammy
 
-# Ini maksudnya ngasih izin admin ke server Railway-nya, BUKAN HP LU
 USER root
 
 WORKDIR /app
@@ -8,7 +7,8 @@ COPY package*.json ./
 RUN npm install
 COPY . .
 
-# Bikin folder database biar bot lu kagak error merah lagi
+# Buat folder temp manual untuk database yang tadi sempat error
 RUN mkdir -p /home/pptruser/temp && chmod -R 777 /home/pptruser/temp
 
 CMD ["node", "index.js"]
+
