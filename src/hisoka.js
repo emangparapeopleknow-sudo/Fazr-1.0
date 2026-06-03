@@ -63,7 +63,7 @@ async function start() {
                 '--no-zygote',
                 //'--enable-features=WebContentsForceDark:inversion_method/cielab_based/image_behavior/selective/text_lightness_threshold/150/background_lightness_threshold/205'
             ],
-            executablePath: platform() === 'win32' ? chromium.executablePath() : platform() === "linux" ? '/usr/bin/google-chrome-stable' : '',
+            executablePath: '/usr/bin/chromium',
             bypassCSP: true
         },
         markOnlineAvailable: true,
