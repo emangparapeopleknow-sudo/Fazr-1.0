@@ -38,7 +38,7 @@ async function start() {
         global.db = content
     }
 
-    const hisoka = new Client({
+     const hisoka = new Client({
     authStrategy: new LocalAuth({
         clientId: `${config.session.Name}`
     }),
@@ -48,15 +48,15 @@ async function start() {
         show: true,
         phoneNumber: "6285825396503"
     },
-    playwright: {
+    puppeteer: {
         headless: true,
-        devtools: false,
-        timeout: 0,
-        bypassCSP: true,
         args: [
             '--no-sandbox',
             '--disable-setuid-sandbox',
             '--disable-dev-shm-usage',
+            '--disable-extensions',
+            '--no-first-run',
+            '--no-zygote',
             '--single-process'
         ]
     },
