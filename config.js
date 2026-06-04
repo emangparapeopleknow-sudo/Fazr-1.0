@@ -3,8 +3,8 @@ import fs from "fs"
 
 // limit
 const limit = {
-   free: 25,
-   premium: 250,
+   free: 5,
+   premium: 50,
    VIP: "Infinity",
    download: {
       free: 30000000, // use byte
@@ -45,14 +45,14 @@ export default {
    options: {
       public: true,
       URI: "database.json", // use mongo or file json
-      owner: ["6288292024190", "62858156631709"],
+      owner: ["6285171542317", "6281528417328"],
       pathCommand: 'commands'
    },
 
    Exif: {
       packId: "https://instagram.com/cak_haho",
       packName: `Sticker ini Dibuat Oleh :`,
-      packPublish: "Dika Ardnt.",
+      packPublish: "Fazr Bot 1.0.0.",
       packEmail: "dika.ardianta7@yahoo.com",
       packWebsite: "https://instgaram.com/cak_haho",
       androidApp: "https://play.google.com/store/apps/details?id=com.bitsmedia.android.muslimpro",
