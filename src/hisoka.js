@@ -73,7 +73,7 @@ async function start() {
         autoClearSession: true
     })
 
-    hisoka.options.puppeteer.timeout = 0;
+    hisoka.options.puppeteer = { timeout: 0 };
     hisoka.initialize()
 
     hisoka.on("qr", qr => {
