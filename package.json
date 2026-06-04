@@ -39,5 +39,6 @@
     "sharp": "^0.32.0",
     "util": "^0.12.5",
     "whatsapp-web.js": "github:pedroslopez/whatsapp-web.js#main"
+    "playwright-chromium": "^1.44.0"
   }
 }
