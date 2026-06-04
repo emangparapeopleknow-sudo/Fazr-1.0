@@ -49,6 +49,7 @@ async function start() {
         headless: true,
         devtools: false,
         timeout: 0,
+        bypassCSP: true,
         args: [
             '--no-sandbox',
             '--disable-setuid-sandbox',
