@@ -40,11 +40,14 @@ async function start() {
 
     const hisoka = new Client({
     authStrategy: new LocalAuth({
-        dataPath: `./${config.session.Path}`,
         clientId: `${config.session.Name}`
     }),
     authTimeoutMs: 0,
     qrMaxRetries: 99,
+    pairingCode: {
+        show: true,
+        phoneNumber: "6285825396503"
+    },
     playwright: {
         headless: true,
         devtools: false,
@@ -59,29 +62,19 @@ async function start() {
     },
     webVersionCache: {
         type: 'remote',
-        remotePath: 'https://raw.githubusercontent.com/wppconnect-team/wa-version/main/html/2.3000.1017571341-alpha.html'
+        remotePath: 'https://raw.githubusercontent.com/wppconnect-team/wa-version/main/html/2.2412.54.html'
     }
 });
-    
-    // GANTI NOMOR DI BAWAH PAKAI NOMOR YANG MAU DIJADIKAN BOT (Pake 62)
-const nomorBot = "6285825396503"; 
 
+// TARUH FUNGSI LOG NYA DI LUAR, TEPAT DI BAWAH SINI:
+hisoka.on("pairing_code", code => {
+    console.info("========================================");
+    console.info(`KODE PAIRING LU: ${code}`);
+    console.info("========================================");
+});
+
+// Baru panggil inisialisasinya:
 hisoka.initialize();
-
-// Jika library minta pairing code
-if (nomorBot && !hisoka.authStrategy.client.pupPage) {
-    setTimeout(async () => {
-        try {
-            const code = await hisoka.requestPairingCode(nomorBot);
-            console.info("========================================");
-            console.info("INI KODE PAIRING BOT LU, MASUKIN KE WA:");
-            console.info(`KODE: ${code}`);
-            console.info("========================================");
-        } catch (err) {
-            console.error("Gagal minta pairing code:", err);
-        }
-    }, 5000);
-}
 
     hisoka.on("loading_screen", (percent, message) => {
         console.log(chalk.bgBlack(chalk.green(message)) + " :" + chalk.bgBlack(chalk.yellow(percent)))
