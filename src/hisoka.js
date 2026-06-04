@@ -38,7 +38,7 @@ async function start() {
         global.db = content
     }
 
-     const hisoka = new Client({
+      const hisoka = new Client({
     authStrategy: new LocalAuth({
         clientId: `${config.session.Name}`
     }),
@@ -50,7 +50,8 @@ async function start() {
     },
     puppeteer: {
         headless: true,
-        bypassCSP: false, // <--- KUNCI UTAMA: Matikan bypass biar ga bentrok CSP
+        // Kita paksa true lagi, tapi ditambahin argument pemutus keamanan di bawah
+        bypassCSP: true, 
         args: [
             '--no-sandbox',
             '--disable-setuid-sandbox',
@@ -58,10 +59,12 @@ async function start() {
             '--disable-extensions',
             '--no-first-run',
             '--no-zygote',
-            '--single-process'
+            '--single-process',
+            // --- DUA AMUNISI BARU SAKTI ANTI CSP ---
+            '--disable-web-security',
+            '--disable-features=IsolateOrigins,site-per-process'
         ]
     },
-    // Ganti jadi tipe 'local' biar gak maksain narik HTML remote yang bikin eror
     webVersionCache: {
         type: 'local'
     }
