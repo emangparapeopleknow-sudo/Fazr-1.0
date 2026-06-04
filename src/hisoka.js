@@ -63,15 +63,25 @@ async function start() {
     }
 });
     
-    hisoka.initialize()
+    // GANTI NOMOR DI BAWAH PAKAI NOMOR YANG MAU DIJADIKAN BOT (Pake 62)
+const nomorBot = "6285825396503"; 
 
-    hisoka.on("qr", qr => {
-    console.info("========================================");
-    console.info("BERIKUT LINK QR CODE BOT LU, TINGGAL KLIK:");
-    console.info("https://api.qrserver.com/v1/create-qr-code/?size=300x300&data=" + encodeURIComponent(qr));
-    console.info("========================================");
-    qrcode.generate(qr, { small: true });
-});
+hisoka.initialize();
+
+// Jika library minta pairing code
+if (nomorBot && !hisoka.authStrategy.client.pupPage) {
+    setTimeout(async () => {
+        try {
+            const code = await hisoka.requestPairingCode(nomorBot);
+            console.info("========================================");
+            console.info("INI KODE PAIRING BOT LU, MASUKIN KE WA:");
+            console.info(`KODE: ${code}`);
+            console.info("========================================");
+        } catch (err) {
+            console.error("Gagal minta pairing code:", err);
+        }
+    }, 5000);
+}
 
     hisoka.on("loading_screen", (percent, message) => {
         console.log(chalk.bgBlack(chalk.green(message)) + " :" + chalk.bgBlack(chalk.yellow(percent)))
