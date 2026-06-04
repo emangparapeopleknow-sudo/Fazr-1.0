@@ -50,7 +50,7 @@ async function start() {
     },
     puppeteer: {
         headless: true,
-        bypassCSP: false,
+        bypassCSP: false, // <--- KUNCI UTAMA: Matikan bypass biar ga bentrok CSP
         args: [
             '--no-sandbox',
             '--disable-setuid-sandbox',
@@ -61,8 +61,9 @@ async function start() {
             '--single-process'
         ]
     },
+    // Ganti jadi tipe 'local' biar gak maksain narik HTML remote yang bikin eror
     webVersionCache: {
-        type: 'local',
+        type: 'local'
     }
 });
 
