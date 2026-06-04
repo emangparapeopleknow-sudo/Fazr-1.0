@@ -89,7 +89,7 @@ async function start() {
 
     hisoka.on("message_create", async (message) => {
     global.public = true;
-    global.owner = ["628xxxxxxxxxx"]; // <--- GANTI JADI NOMOR WA LU
+    global.owner = ["6285171542317"]; // <--- GANTI JADI NOMOR WA LU
 
     const m = await (await serialize(hisoka, message));
     await (await Message(hisoka, m));
