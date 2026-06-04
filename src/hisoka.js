@@ -88,9 +88,12 @@ async function start() {
     })
 
     hisoka.on("message_create", async (message) => {
-        const m = await (await serialize(hisoka, message))
-        await (await Message(hisoka, m))
-    })
+    global.public = true;
+    global.owner = ["628xxxxxxxxxx"]; // <--- GANTI JADI NOMOR WA LU
+
+    const m = await (await serialize(hisoka, message));
+    await (await Message(hisoka, m));
+});
 
     // rewrite database every 30 seconds
     setInterval(async () => {
