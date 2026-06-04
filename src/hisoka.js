@@ -50,7 +50,6 @@ async function start() {
     },
     puppeteer: {
         headless: true,
-        // Kita paksa true lagi, tapi ditambahin argument pemutus keamanan di bawah
         bypassCSP: true, 
         args: [
             '--no-sandbox',
@@ -60,13 +59,14 @@ async function start() {
             '--no-first-run',
             '--no-zygote',
             '--single-process',
-            // --- DUA AMUNISI BARU SAKTI ANTI CSP ---
             '--disable-web-security',
             '--disable-features=IsolateOrigins,site-per-process'
         ]
     },
+    // KITA PAKSA TEMBAK PAKE REMOTEPATH VERSI LAIN YANG GAK BENTROK CSP
     webVersionCache: {
-        type: 'local'
+        type: 'remote',
+        remotePath: 'https://raw.githubusercontent.com/wppconnect-team/wa-version/main/html/2.2410.1.html'
     }
 });
 
