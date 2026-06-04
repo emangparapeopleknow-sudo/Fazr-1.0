@@ -39,41 +39,29 @@ async function start() {
     }
 
     const hisoka = new Client({
-        authStrategy: new LocalAuth({
-            dataPath: `./${config.session.Path}`,
-            clientId: `${config.session.Name}`
-        }),
-        authTimeoutMs: 600000,
-        playwright: {
-            headless: true,
-            devtools: false,
-            args: [
-                '--aggressive-tab-discard',
-                '--disable-accelerated-2d-canvas',
-                '--disable-application-cache',
-                '--disable-cache',
-                '--disable-dev-shm-usage',
-                '--disable-gpu',
-                '--disable-offline-load-stale-cache',
-                '--disable-setuid-sandbox',
-                '--disable-setuid-sandbox',
-                '--disk-cache-size=0',
-                '--ignore-certificate-errors',
-                '--no-first-run',
-                '--no-sandbox',
-                '--no-zygote',
-                //'--enable-features=WebContentsForceDark:inversion_method/cielab_based/image_behavior/selective/text_lightness_threshold/150/background_lightness_threshold/205'
-            ],
-            bypassCSP: true,
-        },
-        markOnlineAvailable: true,
-        qrMaxRetries: 10,
-        userAgent: 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_5) AppleWebKit/603.2.4 (KHTML, like Gecko) Version/11.1.2 Safari/603.2.4',
-        takeoverTimeoutMs: 'Infinity',
-        autoClearSession: true
-    })
-
-    hisoka.options.puppeteer = { timeout: 0 };
+    authStrategy: new LocalAuth({
+        dataPath: `./${config.session.Path}`,
+        clientId: `${config.session.Name}`
+    }),
+    authTimeoutMs: 0,
+    qrMaxRetries: 99,
+    playwright: {
+        headless: true,
+        devtools: false,
+        timeout: 0,
+        args: [
+            '--no-sandbox',
+            '--disable-setuid-sandbox',
+            '--disable-dev-shm-usage',
+            '--single-process'
+        ]
+    },
+    webVersionCache: {
+        type: 'remote',
+        remotePath: 'https://raw.githubusercontent.com/wppconnect-team/wa-version/main/html/2.3000.1017571341-alpha.html'
+    }
+});
+    
     hisoka.initialize()
 
     hisoka.on("qr", qr => {
